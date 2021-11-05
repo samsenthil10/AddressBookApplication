@@ -1,4 +1,4 @@
-package com.bridgelabz.addressbookapplication.controller;
+package com.bridgelabz.addressbookapplication.controllers;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.validation.Valid;
 
 import com.bridgelabz.addressbookapplication.dto.ContactDTO;
 import com.bridgelabz.addressbookapplication.dto.ResponseDTO;
-import com.bridgelabz.addressbookapplication.model.Contact;
-import com.bridgelabz.addressbookapplication.service.IAddressBookService;
+import com.bridgelabz.addressbookapplication.models.Contact;
+import com.bridgelabz.addressbookapplication.services.IAddressBookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
