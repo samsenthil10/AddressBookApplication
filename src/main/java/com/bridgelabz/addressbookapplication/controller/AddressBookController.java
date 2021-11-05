@@ -2,6 +2,8 @@ package com.bridgelabz.addressbookapplication.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.bridgelabz.addressbookapplication.dto.ContactDTO;
 import com.bridgelabz.addressbookapplication.dto.ResponseDTO;
 import com.bridgelabz.addressbookapplication.model.Contact;
@@ -43,7 +45,7 @@ public class AddressBookController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> addContactData(@RequestBody ContactDTO contactDTO) {
+    public ResponseEntity<ResponseDTO> addContactData(@Valid @RequestBody ContactDTO contactDTO) {
         Contact contact = addressbookservice.createContact(contactDTO);
         ResponseDTO response = new ResponseDTO("Created contact data for", contact);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
@@ -52,7 +54,7 @@ public class AddressBookController {
 
     @PutMapping("/update/{contactId}")
     public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("contactId") int contactId,
-            @RequestBody ContactDTO contactDTO) {
+            @Valid @RequestBody ContactDTO contactDTO) {
         Contact contact = addressbookservice.updateContact(contactId, contactDTO);
         ResponseDTO response = new ResponseDTO("Updated contact data for", contact);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
