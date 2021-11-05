@@ -1,4 +1,4 @@
-package com.bridgelabz.addressbookapplication.model;
+package com.bridgelabz.addressbookapplication.models;
 
 import com.bridgelabz.addressbookapplication.dto.ContactDTO;
 
