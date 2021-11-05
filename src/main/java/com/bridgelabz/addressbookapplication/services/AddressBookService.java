@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bridgelabz.addressbookapplication.dto.ContactDTO;
+import com.bridgelabz.addressbookapplication.exceptions.AddressBookException;
 import com.bridgelabz.addressbookapplication.models.Contact;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ public class AddressBookService implements IAddressBookService {
 
     @Override
     public Contact getContactById(int contactId) {
-        return contactList.get(contactId - 1);
+        return contactList.stream().filter(contact -> contact.getContactId() == contactId).findFirst()
+                .orElseThrow(() -> new AddressBookException("Contact not found"));
     }
 
     @Override
@@ -47,7 +49,7 @@ public class AddressBookService implements IAddressBookService {
 
     @Override
     public void deleteContact(int contactId) {
-        contactList.remove(contactId-1); 
+        contactList.remove(contactId - 1);
     }
 
 }
