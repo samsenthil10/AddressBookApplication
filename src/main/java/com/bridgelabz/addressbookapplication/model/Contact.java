@@ -10,7 +10,7 @@ public class Contact {
     public String state;
     public String city;
     public String zip;
-    public String phone;
+    public String phoneNumber;
 
     public Contact(int contactId, ContactDTO contactDTO) {
         this.contactId = contactId;
@@ -20,7 +20,7 @@ public class Contact {
         this.state = contactDTO.state;
         this.city = contactDTO.city;
         this.zip = contactDTO.zip;
-        this.phone = contactDTO.phone;
+        this.phoneNumber = contactDTO.phoneNumber;
     }
 
     public int getContactId() {
@@ -79,12 +79,12 @@ public class Contact {
         this.zip = zip;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
 }
