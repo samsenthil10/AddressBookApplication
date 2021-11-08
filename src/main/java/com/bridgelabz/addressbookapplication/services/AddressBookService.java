@@ -47,4 +47,13 @@ public class AddressBookService implements IAddressBookService {
         addressBookRepository.delete(contact);
     }
 
+    @Override
+    public List<Contact> findContactByState(String state) {
+        return addressBookRepository.findContactByState(state);
+    }
+
+    @Override
+    public List<Contact> findContactByCity(String city) {
+        return addressBookRepository.findContactByCity(city);
+    }
 }
