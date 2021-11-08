@@ -2,7 +2,9 @@ package com.bridgelabz.addressbookapplication.dto;
 
 import javax.validation.constraints.Pattern;
 
-public class ContactDTO {
+import lombok.ToString;
+
+public @ToString class ContactDTO {
 
     @Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message = "First name Invalid")
     public String firstName;
@@ -21,23 +23,5 @@ public class ContactDTO {
 
     @Pattern(regexp = "^([\\+]?\\d{2})?[\\s]?\\d{10}$", message = "Phone Invalid")
     public String phoneNumber;
-
-    public ContactDTO(String firstName, String lastName, String address, String state, String city, String zip,
-            String phoneNumber) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.state = state;
-        this.city = city;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactDTO [First Name =" + firstName + ", Last Name =" + lastName + ", Address =" + address
-                + ", State =" + state + ", City =" + city + ", Zip =" + zip + ", Phone =" + phoneNumber + "]";
-    }
 
 }
