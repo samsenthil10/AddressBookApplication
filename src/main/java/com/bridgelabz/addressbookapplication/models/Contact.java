@@ -29,8 +29,7 @@ public @Data class Contact {
         
     }
 
-    public Contact(int id,ContactDTO contactDTO) {	
-        this.contactId=id;
+    public Contact(ContactDTO contactDTO) {	
 		this.updateContact(contactDTO);
 	}
 
