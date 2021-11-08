@@ -29,19 +29,19 @@ import lombok.extern.slf4j.Slf4j;
 public class AddressBookController {
 
     @Autowired
-    private IAddressBookService addressbookservice;
+    private IAddressBookService addressBookService;
 
     @RequestMapping(value = { "", "/", "/get" })
     public ResponseEntity<ResponseDTO> getContactData() {
 
-        List<Contact> contactList = addressbookservice.getContact();
+        List<Contact> contactList = addressBookService.getContact();
         ResponseDTO response = new ResponseDTO("Get call success", contactList);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
     }
 
     @GetMapping("/get/{contactId}")
     public ResponseEntity<ResponseDTO> getContactData(@PathVariable("contactId") int contactId) {
-        Contact contact = addressbookservice.getContactById(contactId);
+        Contact contact = addressBookService.getContactById(contactId);
         ResponseDTO response = new ResponseDTO("Get call success for id", contact);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 
@@ -49,7 +49,7 @@ public class AddressBookController {
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> addContactData(@Valid @RequestBody ContactDTO contactDTO) {
-        Contact contact = addressbookservice.createContact(contactDTO);
+        Contact contact = addressBookService.createContact(contactDTO);
         log.debug("Address Book DTO: " + contactDTO.toString());
         ResponseDTO response = new ResponseDTO("Created contact data for", contact);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
@@ -59,7 +59,7 @@ public class AddressBookController {
     @PutMapping("/update/{contactId}")
     public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("contactId") int contactId,
             @Valid @RequestBody ContactDTO contactDTO) {
-        Contact contact = addressbookservice.updateContact(contactId, contactDTO);
+        Contact contact = addressBookService.updateContact(contactId, contactDTO);
         ResponseDTO response = new ResponseDTO("Updated contact data for", contact);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 
@@ -67,9 +67,23 @@ public class AddressBookController {
 
     @DeleteMapping("/delete/{contactId}")
     public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("contactId") int contactId) {
-        addressbookservice.deleteContact(contactId);
+        addressBookService.deleteContact(contactId);
         ResponseDTO response = new ResponseDTO("Delete call success for id ", "deleted id:" + contactId);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 
     }
+
+    @GetMapping("/state/{state}")
+	public ResponseEntity<ResponseDTO> getContactByState(@PathVariable String state) {
+		List<Contact> contactList = addressBookService.findContactByState(state);
+		ResponseDTO response = new ResponseDTO("success", contactList);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+	}
+
+    @GetMapping("/city/{city}")
+	public ResponseEntity<ResponseDTO> getContactByCity(@PathVariable String city) {
+		List<Contact> contactList = addressBookService.findContactByCity(city);
+		ResponseDTO response = new ResponseDTO("success", contactList);
+		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+	}
 }
